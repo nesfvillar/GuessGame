@@ -4,17 +4,20 @@
     {
         static void Main()
         {
-            Console.WriteLine("Choose the max value");
-            int maxN = ReadInt();
+            int maxN = ReadInt("Choose the max value: ");
 
             var game = new Game(maxN);
             game.Start();
         }
 
-        static public int ReadInt()
+        static public int ReadInt(string message = "")
         {
-            int.TryParse(Console.ReadLine(), out int value);
-            return value;
+            int? value = null;
+            while (!value.HasValue) {
+                Console.Write(message);
+                value = int.TryParse(Console.ReadLine(), out int i) ? i : null;
+            }
+            return value.Value;
         }
     }
 
@@ -46,7 +49,7 @@
 
         public void WriteRules()
         {
-            Console.WriteLine("Make a guess between the number 0 and {0}", _maxN);
+            Console.Write("Make a guess between the number 0 and {0}: ", _maxN);
         }
 
         public void MakeGuess()
@@ -67,8 +70,8 @@
 
         public void GiveClue()
         {
-            var clue = _guess > _randomNumber ? "Your guess was too high" : "Your guess was too low";
-            Console.WriteLine(clue);
+            var clue = _guess > _randomNumber ? "Your guess was too high: " : "Your guess was too low: ";
+            Console.Write(clue);
         }
 
         public void WriteFinish()
