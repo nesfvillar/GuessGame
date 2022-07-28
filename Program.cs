@@ -1,4 +1,4 @@
-﻿namespace GuessGame
+namespace GuessGame
 {
     class Program
     {
@@ -31,7 +31,7 @@
         public Game(int maxN)
         {
             _maxN = maxN;
-            _randomNumber = new Random().Next(maxN);
+            _randomNumber = new Random().Next(maxN + 1);
             _score = 0;
         }
 
@@ -45,7 +45,7 @@
                 MakeGuess();
             }
             WriteFinish();
-        } 
+        }
 
         public void WriteRules()
         {
